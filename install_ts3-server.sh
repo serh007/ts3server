@@ -11,7 +11,7 @@
 # user to run the ts3server and where to install it
 TS3_USER="teamspeak3"
 TS3_DIR="/opt/ts3server"
-TS3_VER="3.10.0"
+TS3_VER="3.12.1"
 
 # ==> MAIN PROGRAM <==
 set -e # exit with a non-zero status when there is an uncaught error
@@ -122,7 +122,7 @@ sleep 5
 
 # finish
 EXTERNAL_IP=$(wget -qO - http://geoip.ubuntu.com/lookup | sed -n -e 's/.*<Ip>\(.*\)<\/Ip>.*/\1/p')
-IMPORTANT=$(cat "$TS3_DIR"/logs/*_1.log | grep -P -o "token=[a-zA-z0-9+]+")
+IMPORTANT=$(sudo cat "$TS3_DIR"/logs/*_1.log | grep -P -o "token=[a-zA-z0-9+]+")
 echo "$IMPORTANT" > "$TS3_DIR"/ServerAdmin_Privilege_Key.txt # save the ServerAdmin Privilege Key for easy future reference
 echo -e "\nServerAdmin info saved to: '$TS3_DIR/ServerAdmin_Privilege_Key.txt'"
 echo -e "ServerAdmin Privilege Key: $IMPORTANT\n"
